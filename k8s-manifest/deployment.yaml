@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app-deploy
+  labels:
+    app: demo-app-label
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-app-label
+  template:
+    metadata:
+      labels:
+        app: demo-app-label
+    spec:
+      containers:
+        - name: flaskapi
+          image: mydockeraccfortest/demo_app2:22
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
